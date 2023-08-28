@@ -90,6 +90,19 @@ const excluirUsuario = (cpf: string): Usuario => {
   return usuario;
 };
 
+const filtrarUsuario = (filtro?: string): Usuario[] => {
+  const bd = lerArquivo() as Usuario[];
+
+  const usuarios = bd.filter((usuario) => {
+    if (filtro) {
+      return usuario.profissao === filtro;
+    }
+
+    return usuario;
+  });
+
+  return usuarios;
+};
 /*const edson = cadastroUsuario({
   nome: "Antonio Carlos",
   email: "bidu@bidu.com",
@@ -103,9 +116,22 @@ const excluirUsuario = (cpf: string): Usuario => {
     cidade: "morato"
   }
 });*/
-const edson = detalharUsuario("12345678977");
-const bd = lerArquivo();
-atualizarUsuario("12345678977", {
+
+/*cadastroUsuario({
+    nome: "Junior Santos",
+    email: "bidu@bidu.com",
+    cpf: "12345678977",
+    profissao: "Frontend",
+    endereco: {
+      cep: "07918120",
+      rua: "aldo lupo",
+      complemento: "casa 02",
+      bairro: "aparecida",
+      cidade: "morato"
+    }
+  });*/
+
+/*atualizarUsuario("12345678977", {
   nome: "Edson Gomes",
   email: "bidu@bidu.com",
   cpf: "12345678977",
@@ -117,8 +143,8 @@ atualizarUsuario("12345678977", {
     bairro: "aparecida",
     cidade: "morato"
   }
-});
+});*/
 //console.log(edson);
-//console.log(edson, bd);
+console.log(filtrarUsuario("Frontend"));
 
-console.log(excluirUsuario("12345678977"));
+//console.log(excluirUsuario("12345678977"));
