@@ -73,6 +73,23 @@ const atualizarUsuario = (cpf: string, dados: Usuario): void => {
   console.log(usuario);
 };
 
+const excluirUsuario = (cpf: string): Usuario => {
+  const bd = lerArquivo() as Usuario[];
+  const usuario = bd.find((usuario) => {
+    return usuario.cpf === cpf;
+  });
+  if (!usuario) {
+    throw new Error("Usuario não encontrado");
+  }
+
+  const exclusao = bd.filter((usuario) => {
+    return usuario.cpf != cpf;
+  });
+  escreverArquivo(exclusao);
+
+  return usuario;
+};
+
 /*const edson = cadastroUsuario({
   nome: "Antonio Carlos",
   email: "bidu@bidu.com",
@@ -103,3 +120,5 @@ atualizarUsuario("12345678977", {
 });
 //console.log(edson);
 //console.log(edson, bd);
+
+console.log(excluirUsuario("12345678977"));
